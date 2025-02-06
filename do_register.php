@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     try {
-        $stmt = $db->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
+        $stmt = $db->prepare('INSERT INTO users (username, password, role) VALUES (:username, :password, "user")');
         $stmt->bindValue(':username', $username);
         $stmt->bindValue(':password', $password);
         $stmt->execute();

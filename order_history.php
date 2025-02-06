@@ -31,7 +31,7 @@ $db = new SQLite3('db/store.db');
         ORDER BY o.created_at DESC
     ");
     
-    if (!$orders->numColumns()): ?>
+    if ($orders->fetchArray() === false): ?>
         <p>No orders found</p>
     <?php else: ?>
         <table>

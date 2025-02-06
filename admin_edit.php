@@ -41,7 +41,9 @@ if (!$product) {
             
             <div class="form-group">
                 <label>Description:</label>
-                <textarea name="description" rows="4" required><?= htmlspecialchars($product['description']) ?></textarea>
+                <textarea name="description" rows="4" required><?= 
+                    htmlspecialchars($product['description']) 
+                ?></textarea>
             </div>
             
             <div class="form-group">

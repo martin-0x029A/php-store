@@ -31,7 +31,7 @@ if (!empty($_SESSION['cart'])) {
         // Create order
         $stmt = $db->prepare('INSERT INTO orders (user_id, total) VALUES (:user_id, :total)');
         $stmt->bindValue(':user_id', $_SESSION['user']['id']);
-        $stmt->bindValue(':total', calculateCartTotal());
+        $stmt->bindValue(':total', calculateCartTotal($db));
         $stmt->execute();
         $orderId = $db->lastInsertRowID();
         
@@ -60,7 +60,7 @@ if (!empty($_SESSION['cart'])) {
 
 header('Location: index.php');
 
-function calculateCartTotal() {
+function calculateCartTotal($db) {
     $total = 0;
     foreach ($_SESSION['cart'] as $productId => $quantity) {
         $product = $db->querySingle("SELECT price FROM products WHERE id = $productId", true);
